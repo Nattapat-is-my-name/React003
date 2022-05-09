@@ -1,91 +1,70 @@
 import React, { Component } from 'react';
 
-import { Media } from 'reactstrap';
+import {
+    Card, CardImg, CardImgOverlay, CardText, CardBody,
+
+    CardTitle
+} from 'reactstrap';
 
 
 
 class Menu extends Component {
 
+
+
     constructor(props) {
 
         super(props);
 
+
+
         this.state = {
 
-            dishes: [
+            selectedDish: null
 
-                {
+        }
 
-                    id: 0,
+    }
 
-                    name: 'Uthappizza',
 
-                    image: '/assets /images /uthappizza.png',
 
-                    category: 'mains',
+    onDishSelect(dish) {
 
-                    label: 'Hot',
+        this.setState({ selectedDish: dish });
 
-                    price: '4.99',
+    }
 
-                    description: 'A unique combination of Indian Uthappam (pancake) and Italian pizza, topped with Cerignola olives, ripe vine cherry tomatoes, Vidalia onion, Guntur chillies and Buffalo Paneer.'
-                },
 
-                {
 
-                    id: 1,
+    renderDish(dish) {
 
-                    name: 'Zucchipakoda',
+        if (dish != null)
 
-                    image: '/assets /images /zucchipakoda.png',
+            return (
 
-                    category: 'appetizer',
+                <Card>
 
-                    label: '',
+                    <CardImg top src={dish.image} alt={dish.name} />
 
-                    price: '1.99',
+                    <CardBody>
 
-                    description: 'Deep fried Zucchini coated with mildly spiced Chickpea flour batter accompanied with a sweet-tangy tamarind sauce'
-                },
+                        <CardTitle>{dish.name}</CardTitle>
 
-                {
+                        <CardText>{dish.description}</CardText>
 
-                    id: 2,
+                    </CardBody>
 
-                    name: 'Vadonut',
+                </Card>
 
-                    image: '/assets /images /vadonut.png',
+            );
 
-                    category: 'appetizer',
+        else
 
-                    label: 'New',
+            return (
 
-                    price: '1.99',
+                <div></div>
 
-                    description: 'A quintessential ConFusion experience, is it a vada or is it a donut?'
-                },
-                
-
-                {
-
-                    id: 3,
-
-                    name: 'ElaiCheese Cake',
-
-                    image: '/assets /images /elaicheesecake.png',
-
-                    category: 'dessert',
-
-                    label: '',
-
-                    price: '2.99',
-
-                    description: 'A delectable, semi-sweet New York Style Cheese Cake, with Graham cracker crust and spiced with Indian cardamoms'
-                }
-
-            ],
-
-        };
+            );
 
     }
 
@@ -93,29 +72,25 @@ class Menu extends Component {
 
     render() {
 
-        const menu = this.state.dishes.map((dish) => {
+        const menu = this.props.dishes.map((dish) => {
 
             return (
 
-                <div key={dish.id}>
+                <div className="col-12 col-md-5 m-1">
 
-                    <Media className="d-flex col-12 mt-5">
+                    <Card key={dish.id}
 
-                        <Media left middle>
+                        onClick={() => this.onDishSelect(dish)}>
 
-                            <Media object src={dish.image} alt={dish.name} />
+                        <CardImg width="100%" src={dish.image} alt={dish.name} />
 
-                        </Media>
+                        <CardImgOverlay>
 
-                        <Media body className="ms-5">
+                            <CardTitle>{dish.name}</CardTitle>
 
-                            <Media heading>{dish.name}</Media>
+                        </CardImgOverlay>
 
-                            <p>{dish.description}</p>
-
-                        </Media>
-
-                    </Media>
+                    </Card>
 
                 </div>
 
@@ -131,11 +106,17 @@ class Menu extends Component {
 
                 <div className="row">
 
-                    <Media list>
+                    {menu}
 
-                        {menu}
+                </div>
 
-                    </Media>
+                <div className="row">
+
+                    <div className="col-12 col-md-5 m-1">
+
+                        {this.renderDish(this.state.selectedDish)}
+
+                    </div>
 
                 </div>
 
@@ -146,7 +127,5 @@ class Menu extends Component {
     }
 
 }
-
-
 
 export default Menu; 
