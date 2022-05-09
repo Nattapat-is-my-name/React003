@@ -1,4 +1,4 @@
-
+import './App.css'
 import React, { Component } from 'react';
 import { DISHES } from './shared /dishes';
 import Main from './components/MainComponent';

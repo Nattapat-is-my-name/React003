@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import { Navbar, NavbarBrand } from 'reactstrap';
-
 import Menu from './MenuComponent';
 
 import { DISHES } from '../shared /dishes';
@@ -68,11 +66,6 @@ class Main extends Component {
         const renderMenu = <Menu dishes={this.state.dishes} selectedDish={this.state.selectedDish} onClick={(dishId) => this.onDishSelect(dishId)} />;
         return (
             <div>
-                <Navbar dark color="primary">
-                    <div className="container">
-                        <NavbarBrand href='/'>Ristorante Con Fusion</NavbarBrand>
-                    </div>
-                </Navbar>
                 <Header />
                 <Routes>
                     <Route path='/' element={HomePage} />

@@ -1,14 +1,14 @@
 import React from 'react';
+import Dishdetail from './DishdetailComponent';
 
 import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
 
 
-
-function RenderMenuItem({ dish }) {
+function RenderMenuItem({ dish , onClick }) {
 
     return (
 
-        <Card>
+        <Card onClick={ () => onClick(dish.id) } >
 
             <CardImg width="100%" src={dish.image} alt={dish.name} />
 
@@ -32,19 +32,21 @@ function renderDish(dish) {
 
         return (
 
-            <Card>
+            // <Card>
 
-                <CardImg top src={dish.image} alt={dish.name} />
+            //     <CardImg top src={dish.image} alt={dish.name} />
 
-                <CardBody>
+            //     <CardBody>
 
-                    <CardTitle>{dish.name}</CardTitle>
+            //         <CardTitle>{dish.name}</CardTitle>
 
-                    <CardText>{dish.description}</CardText>
+            //         <CardText>{dish.description}</CardText>
 
-                </CardBody>
+            //     </CardBody>
 
-            </Card>
+            // </Card>
+            <Dishdetail dishes={dish} />
+            // เรียกใช้ dishdetail component แทน
 
         );
 
