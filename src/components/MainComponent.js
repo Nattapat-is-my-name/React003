@@ -6,6 +6,10 @@ import Menu from './MenuComponent';
 
 import { DISHES } from '../shared /dishes';
 
+import Header from './HeaderComponent';
+
+import Footer from './FooterComponent';
+
 
 
 class Main extends Component {
@@ -52,7 +56,12 @@ class Main extends Component {
 
                 </Navbar>
 
-                <Menu dishes={this.state.dishes} selectedDish={this.state.selectedDish} onClick={(dishId) => this.onDishSelect(dishId)} />
+
+                <Header />
+
+                <Menu dishes={this.state.dishes} onClick={(dishId) => this.onDishSelect(dishId)} />
+
+                <Footer />
 
             </div>
 
