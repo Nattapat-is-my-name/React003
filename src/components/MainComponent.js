@@ -12,7 +12,15 @@ import Footer from './FooterComponent';
 
 import Home from './HomeComponent';
 
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
+
+import Contact from './ContactComponent';
+
+import { COMMENTS } from '../shared /comments';
+
+import { PROMOTIONS } from '../shared /promotions';
+
+import { LEADERS } from '../shared /leaders';
 
 
 
@@ -30,7 +38,11 @@ class Main extends Component {
 
             dishes: DISHES,
 
-            selectedDish: null,
+            comments: COMMENTS,
+
+            promotions: PROMOTIONS,
+
+            leaders: LEADERS
 
         };
 
@@ -47,55 +59,30 @@ class Main extends Component {
 
 
     render() {
-        const HomePage = () => {
-
-            return (
-
-                <Home
-
-                />
-
-            );
-
-        }
-        <Switch>
-
-            <Route path='/home' component={HomePage} />
-
-            <Route exact path='/menu' component={() => <Menu dishes={this.state.dishes} />} />
-
-            <Redirect to="/home" />
-
-        </Switch>
-
+        const HomePage =
+            <Home
+                dish={this.state.dishes.filter((dish) => dish.featured)[0]}
+                promotion={this.state.promotions.filter((promo) => promo.featured)[0]}
+                leader={this.state.leaders.filter((leader) => leader.featured)[0]}
+            />;
+        const renderMenu = <Menu dishes={this.state.dishes} selectedDish={this.state.selectedDish} onClick={(dishId) => this.onDishSelect(dishId)} />;
         return (
-
-
-
-
             <div>
-
                 <Navbar dark color="primary">
-
                     <div className="container">
-
-                        <NavbarBrand href="/">Ristorante Con Fusion</NavbarBrand>
-
+                        <NavbarBrand href='/'>Ristorante Con Fusion</NavbarBrand>
                     </div>
-
                 </Navbar>
-
-
                 <Header />
-
-                <Menu dishes={this.state.dishes} onClick={(dishId) => this.onDishSelect(dishId)} />
-
+                <Routes>
+                    <Route path='/' element={HomePage} />
+                    <Route path='/home' element={HomePage} />
+                    <Route path='/menu' element={renderMenu} />
+                    <Route exact path='/contactus' element={<Contact />} />
+                </Routes>
                 <Footer />
-
-            </div >
-
-        );
-
+            </div>
+        )
     }
 
 }
