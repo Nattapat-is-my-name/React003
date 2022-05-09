@@ -45,7 +45,7 @@ function renderDish(dish) {
             //     </CardBody>
 
             // </Card>
-            <Dishdetail dishes={dish} />
+            <Dishdetail dishes={dish} name="hi"/>
             // เรียกใช้ dishdetail component แทน
 
         );
@@ -92,15 +92,9 @@ const Menu = (props) => {
 
             </div>
 
-            <div className="row">
+            {  renderDish(props.dishes[props.selectedDish]) }
 
-                <div className="col-12 col-md-5 m-1">
-
-                    {renderDish(props.dishes[props.selectedDish])}
-
-                </div>
-
-            </div>
+            
 
         </div>
 
