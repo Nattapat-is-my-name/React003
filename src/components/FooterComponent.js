@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 
 
@@ -18,13 +19,13 @@ function Footer(props) {
 
                         <ul className="list-unstyled">
 
-                            <li><a href="#">Home</a></li>
+                            <li><Link to='/home'>Home</Link></li>
 
-                            <li><a href="#">About</a></li>
+                            <li><Link to='/aboutus'>About Us</Link></li>
 
-                            <li><a href="#">Menu</a></li>
+                            <li><Link to='/menu'>Menu</Link></li>
 
-                            <li><a href="contactus.html">Contact</a></li>
+                            <li><Link to='/contactus'>Contact Us</Link></li>
 
                         </ul>
 
